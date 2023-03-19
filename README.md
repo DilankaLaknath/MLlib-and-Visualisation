@@ -17,11 +17,11 @@ However, in his demo, his system was unable to properly categorize "Hip-Hop" bec
 
 ### Answer
 1. Load the Mendeley dataset into a Spark DataFrame using the following command:
-'''val mendeleyDataset = spark.read.option("header", "true").csv("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")'''
+```val mendeleyDataset = spark.read.option("header", "true").csv("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")```
 
 * Here, I am using the 'spark.read' method to load the CSV file into a DataFrame. We are also setting the 'header' option to 'true' to indicate that the first row of the CSV file contains the column names.
 
 2. Split the data into training and testing sets using the 'randomSplit' method:
-'val Array(trainingData, testData) = mendeleyDataset.randomSplit(Array(0.8, 0.2))'
+```val Array(trainingData, testData) = mendeleyDataset.randomSplit(Array(0.8, 0.2))```
 
 * Here, I am using the 'randomSplit' method to split the data into training and testing sets. We are specifying the split ratios as an array of doubles where the first element represents the fraction of the data to use for training and the second element represents the fraction of the data to use for testing.
