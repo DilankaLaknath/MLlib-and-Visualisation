@@ -17,7 +17,7 @@ However, in his demo, his system was unable to properly categorize "Hip-Hop" bec
 
 ### Answer
 1. Load the Mendeley dataset into a Spark DataFrame using the following command:
-'val mendeleyDataset = spark.read.option("header", "true").csv("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")'
+'''val mendeleyDataset = spark.read.option("header", "true").csv("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")'''
 
 * Here, I am using the 'spark.read' method to load the CSV file into a DataFrame. We are also setting the 'header' option to 'true' to indicate that the first row of the CSV file contains the column names.
 
