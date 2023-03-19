@@ -14,15 +14,15 @@ However, in his demo, his system was unable to properly categorize "Hip-Hop" bec
 3. Let's call this dataset "Mendeley dataset."
 4. Note: In this dataset they have a release_date column. But it is actually not an actual date but just the released year. We will continue this convention. 
 
+## Step 2: Use a training/test split of 80/20
+
 ### Answer
-# Running Scala Code in Terminal
-To run Scala code in the terminal, follow these steps:
+1. Load the Mendeley dataset into a Spark DataFrame using the following command:
+'val mendeleyDataset = spark.read.option("header", "true").csv("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")'
 
-1. Install Scala and set up your environment. You can follow the instructions provided on the official Scala website: https://www.scala-lang.org/download/
-2. Create a new Scala file with the code you want to run. Let's say you named the file "MyCode.scala".
-3. Open a terminal window and navigate to the directory where your Scala file is located using the `cd` command. For example, if your file is located in the "Documents" folder, you can run the command `cd ~/Documents`.
-4. Compile your Scala code using the `scalac` command. For example, you can run the command `scalac MyCode.scala`.
-5. Run your Scala code using the `scala` command. For example, you can run the command `scala MyCode`.
-6. If your code requires any external dependencies, make sure to add them to the classpath using the `-cp` option. For example, you can run the command `scala -cp /path/to/dependency MyCode`.
+Here, we are using the 'spark.read' method to load the CSV file into a DataFrame. We are also setting the 'header' option to 'true' to indicate that the first row of the CSV file contains the column names.
 
-Note that these steps assume that you have Scala installed and set up properly on your system. If you encounter any issues, refer to the official Scala documentation or seek help from the Scala community.
+2. Split the data into training and testing sets using the 'randomSplit' method:
+'val Array(trainingData, testData) = mendeleyDataset.randomSplit(Array(0.8, 0.2))'
+
+Here, we are using the 'randomSplit' method to split the data into training and testing sets. We are specifying the split ratios as an array of doubles where the first element represents the fraction of the data to use for training and the second element represents the fraction of the data to use for testing.
