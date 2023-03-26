@@ -45,6 +45,22 @@ val predictions = model.transform(testData)
 predictions.select("track_name", "genre", "prediction", "probability").show()
 
 
+
+
+
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+
+// evaluate the model accuracy
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("label").setPredictionCol("prediction").setMetricName("accuracy")
+val accuracy = evaluator.evaluate(predictions)
+
+// show the predicted labels and their corresponding probabilities
+predictions.select("track_name", "genre", "prediction", "probability").show()
+
+// print the model accuracy
+println("Accuracy: " + accuracy)
+
+
 // save the trained model to a file
 model.save("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/model")
 
