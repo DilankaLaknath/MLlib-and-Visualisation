@@ -7,8 +7,12 @@ val spark = SparkSession.builder.appName("SongGenreClassifier").getOrCreate()
 // Load Mendeley dataset
 val data = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Merged_dataset_new.csv")
 
+// data.filter(col("lyrics").isNull).count()
+// val fdata = data.na.drop(Seq("lyrics"))
+// fdata.printSchema()
+
 // Split data into training and test sets
-val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
+// val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
 
 // Import libraries
 import org.apache.spark.ml.Pipeline
@@ -42,7 +46,7 @@ val model = pipeline.fit(trainingData)
 val predictions = model.transform(testData)
 
 // show the predicted labels and their corresponding probabilities
-predictions.select("track_name", "genre", "prediction", "probability").show()
+predictions.select("lyrics", "genre", "prediction", "probability").show()
 
 
 
@@ -55,7 +59,7 @@ val evaluator = new MulticlassClassificationEvaluator().setLabelCol("label").set
 val accuracy = evaluator.evaluate(predictions)
 
 // show the predicted labels and their corresponding probabilities
-predictions.select("track_name", "genre", "prediction", "probability").show()
+predictions.select("lyrics", "genre", "prediction", "probability").show()
 
 // print the model accuracy
 println("Accuracy: " + accuracy)

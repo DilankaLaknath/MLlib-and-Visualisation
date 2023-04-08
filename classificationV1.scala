@@ -42,7 +42,7 @@ val model = pipeline.fit(trainingData)
 val predictions = model.transform(testData)
 
 // show the predicted labels and their corresponding probabilities
-predictions.select("track_name", "genre", "prediction", "probability").show()
+predictions.select("lyrics", "genre", "prediction", "probability").show()
 
 
 
@@ -55,7 +55,7 @@ val evaluator = new MulticlassClassificationEvaluator().setLabelCol("label").set
 val accuracy = evaluator.evaluate(predictions)
 
 // show the predicted labels and their corresponding probabilities
-predictions.select("track_name", "genre", "prediction", "probability").show()
+predictions.select("lyrics", "genre", "prediction", "probability").show()
 
 // print the model accuracy
 println("Accuracy: " + accuracy)
