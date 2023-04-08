@@ -2,11 +2,15 @@ from flask import Flask, request, render_template
 from pyspark.ml import PipelineModel
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType
-from pyspark.sql.functions import first
 import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+from pyspark.ml.linalg import Vectors
+from pyspark.sql.functions import first, udf
+from pyspark.ml.linalg import DenseVector
+from pyspark.sql.types import ArrayType, DoubleType
+
 
 # initialize SparkSession
 spark = SparkSession.builder.appName('my_app_name').getOrCreate()
@@ -36,12 +40,11 @@ def classify():
     # Use the model to classify the lyrics into one of the seven classes
     result = model.transform(input_df)
     prob =result.select(first("probability")).collect()[0][0]
-
     list_probs = prob.toArray().tolist()
 
     # Create a bar chart of the genre probabilities
     fig, ax = plt.subplots()
-    genres = ['pop', 'country', 'blues', 'jazz', 'reggae', 'rock', 'hip hop','Indie']
+    genres = ['pop', 'country', 'blues', 'jazz', 'reggae', 'rock', 'hip hop', 'Indie']
     genre_probs = {genre: list_probsz for genre, list_probsz in zip(genres, list_probs)}
     ax.bar(genres, list_probs)
     ax.set_ylim([0, 1])
