@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.Tokenizer","timestamp":1680988780840,"sparkVersion":"3.3.2","uid":"tok_f4223ab946cc","paramMap":{"outputCol":"words","inputCol":"lyrics"},"defaultParamMap":{"outputCol":"tok_f4223ab946cc__output"}}
