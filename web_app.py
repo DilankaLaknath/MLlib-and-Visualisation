@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+import numpy as np
 from flask import Flask, request, render_template
 from pyspark.ml import PipelineModel
 from pyspark.sql import SparkSession
@@ -45,7 +46,16 @@ def classify():
     fig, ax = plt.subplots()
     genres = ['pop', 'country', 'blues', 'jazz', 'reggae', 'rock', 'hip hop', 'Indie']
     genre_probs = {genre: list_probsz for genre, list_probsz in zip(genres, list_probs)}
-    ax.bar(genres, list_probs)
+
+    # Define a color map
+    cmap = plt.get_cmap('magma')
+
+    # Generate a list of colors
+    colors = [cmap(i) for i in np.linspace(0, 1, len(genres))]
+
+    # Create the bar chart with different colors
+    ax.bar(genres, list_probs, color=colors)
+
     ax.set_ylim([0, 1])
     ax.set_ylabel('Probability')
     ax.set_xlabel('Genre')
