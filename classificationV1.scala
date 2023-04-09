@@ -7,8 +7,8 @@ val spark = SparkSession.builder.appName("SongGenreClassifier").getOrCreate()
 // Load Mendeley dataset
 val data = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Mendeley_dataset.csv")
 
-// Split data into training and test sets
-val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
+// // Split data into training and test sets
+// val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
 
 // Import libraries
 import org.apache.spark.ml.Pipeline

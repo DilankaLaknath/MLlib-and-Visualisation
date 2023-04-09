@@ -5,14 +5,7 @@ import org.apache.spark.sql.SparkSession
 val spark = SparkSession.builder.appName("SongGenreClassifier").getOrCreate()
 
 // Load Mendeley dataset
-val data = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Merged_dataset_new.csv")
-
-// data.filter(col("lyrics").isNull).count()
-// val fdata = data.na.drop(Seq("lyrics"))
-// fdata.printSchema()
-
-// Split data into training and test sets
-// val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
+val data = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/Merged_dataset.csv")
 
 // Import libraries
 import org.apache.spark.ml.Pipeline
@@ -66,8 +59,18 @@ println("Accuracy: " + accuracy)
 
 
 // save the trained model to a file
-model.save("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/new-model")
+model.save("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/updated-model")
 
 
 // load the trained model from a file
-val loadedModel = PipelineModel.load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/new-model")
+val loadedModel = PipelineModel.load("/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/updated-model")
+
+
+// Debugging
+// data.filter(col("lyrics").isNull).count()
+// val fdata = data.na.drop(Seq("lyrics"))
+// fdata.printSchema()
+// data.select(col("genre")).distinct().count()
+
+// Split data into training and test sets
+// val Array(trainingData, testData) = data.randomSplit(Array(0.8, 0.2))
