@@ -16,7 +16,7 @@ from pyspark.sql.types import ArrayType, DoubleType
 spark = SparkSession.builder.appName('my_app_name').getOrCreate()
 
 app = Flask(__name__)
-model = PipelineModel.load('/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/new-model')
+model = PipelineModel.load('/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/updated-model')
 
 # Define a route for the home page
 @app.route('/')
