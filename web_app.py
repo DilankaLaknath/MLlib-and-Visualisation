@@ -1,22 +1,21 @@
-from flask import Flask, request, render_template
-from pyspark.ml import PipelineModel
-from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-from pyspark.ml.linalg import Vectors
-from pyspark.sql.functions import first, udf
-from pyspark.ml.linalg import DenseVector
-from pyspark.sql.types import ArrayType, DoubleType
+from flask import Flask, request, render_template
+from pyspark.ml import PipelineModel
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType
+from pyspark.sql.functions import first
+
 
 
 # initialize SparkSession
 spark = SparkSession.builder.appName('my_app_name').getOrCreate()
 
 app = Flask(__name__)
-model = PipelineModel.load('/Users/dilanka/Documents/MSc/Big Data Analytics/MLlib-and-Visualisation/updated-model')
+model = PipelineModel.load('final-model')
 
 # Define a route for the home page
 @app.route('/')
