@@ -15,7 +15,7 @@ from pyspark.sql.functions import first
 spark = SparkSession.builder.appName('my_app_name').getOrCreate()
 
 app = Flask(__name__)
-model = PipelineModel.load('final-model')
+model = PipelineModel.load('final_model')
 
 # Define a route for the home page
 @app.route('/')
